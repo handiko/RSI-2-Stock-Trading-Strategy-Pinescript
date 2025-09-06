@@ -14,6 +14,7 @@ This strategy is built on a core idea: trade the trend while exploiting short-te
 
 ## Technical Breakdown
 The code is well-structured and uses several key Pine Script features to manage its state and logic effectively.
+
 **1. State Management with** var
 The most critical technical element is the use of var int positionState = 0. Unlike a regular variable, a var variable retains its value from one bar (or candle) to the next. This is essential for the strategy's logic, as it allows the code to remember whether a position is currently open (positionState = 1) or closed (positionState = 0). This prevents the strategy from continuously buying on every bar that meets the entry conditions.
 
