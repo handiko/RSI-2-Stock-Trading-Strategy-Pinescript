@@ -43,6 +43,8 @@ The script also plots the 200-period EMA directly on the chart using the plot() 
 3. Paste the code into the editor.
 4. Click "Save" and then "Add to Chart" to apply the strategy to your preferred ticker.
 
+Code: [here](https://github.com/handiko/RSI-2-Stock-Trading-Strategy-Pinescript/blob/main/RSI-2%20Strategy.pine)
+
 ## Disclaimer: 
 **_This is a trading strategy for educational and illustrative purposes only. Trading involves risk, and past performance is not indicative of future results. Always backtest and paper trade any strategy before using it with real capital._**
 
