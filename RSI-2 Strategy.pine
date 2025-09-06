@@ -1,0 +1,66 @@
+//@version=5
+strategy("Buy/Sell Position Strategy", overlay = true)
+
+// -----------------------------------------------------------------------------
+// INPUTS
+// -----------------------------------------------------------------------------
+maLength = input.int(200, title="MA Length", minval=1)
+rsiLength = input.int(2, title="RSI Length", minval=1)
+rsiLevel = input.int(10, title="RSI Buy Level", minval=1, maxval=100)
+
+// -----------------------------------------------------------------------------
+// STATE MANAGEMENT
+// -----------------------------------------------------------------------------
+// A 'var' variable retains its value from bar to bar.
+// 0 = "no position"
+// 1 = "buy position"
+var int positionState = 0
+
+// -----------------------------------------------------------------------------
+// INDICATORS
+// -----------------------------------------------------------------------------
+// Calculate the 200-period EMA
+ma200 = ta.ema(close, maLength)
+
+// Calculate the 2-period RSI
+rsi2 = ta.rsi(close, rsiLength)
+
+// -----------------------------------------------------------------------------
+// BUY LOGIC
+// -----------------------------------------------------------------------------
+// Condition 1: Close is above the 200-period EMA
+isAboveMA = close > ma200
+// Condition 2: 2-period RSI is below 10
+isRSIBelowLevel = rsi2 < rsiLevel
+// Condition 3: We are in a "no position" state
+isInNoPosition = positionState == 0
+
+// Check if all buy conditions are met
+buySignal = isAboveMA and isRSIBelowLevel and isInNoPosition
+
+// Update the state and enter a long position if a buy signal is triggered
+if (buySignal)
+    positionState := 1
+    strategy.entry("Buy", strategy.long)
+
+// -----------------------------------------------------------------------------
+// SELL LOGIC
+// -----------------------------------------------------------------------------
+// Condition 1: We are in a "buy position" state
+isInBuyPosition = positionState == 1
+// Condition 2: Today's closing price is higher than yesterday's high
+isCloseHigherThanYesterdayHigh = close > high[1]
+
+// Check if all sell conditions are met
+sellSignal = isInBuyPosition and isCloseHigherThanYesterdayHigh
+
+// Update the state and close the position if a sell signal is triggered
+if (sellSignal)
+    positionState := 0
+    strategy.close("Buy", comment="Sell")
+
+// -----------------------------------------------------------------------------
+// PLOTTING
+// -----------------------------------------------------------------------------
+// Plot the MA for visual confirmation
+plot(ma200, color=color.new(color.blue, 0), title="200 EMA")
