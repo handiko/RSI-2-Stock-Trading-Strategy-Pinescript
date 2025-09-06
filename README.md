@@ -50,3 +50,7 @@ The script also plots the 200-period EMA directly on the chart using the plot() 
 ## Related Projects
 * [RSI-2 Stock Strading Strategy](https://github.com/handiko/RSI-2-Stock-Trading-Strategy/blob/main/README.md)
 * [Portfolio Trading Strategy Backtester](https://github.com/handiko/RSI-2-Portfolio-Trading-Strategy-Backtester/blob/main/README.md)
+
+---
+
+Back to [Index](https://github.com/handiko/handiko/blob/master/README.md)
