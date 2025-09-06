@@ -45,6 +45,14 @@ The script also plots the 200-period EMA directly on the chart using the plot() 
 ## Disclaimer: 
 **_This is a trading strategy for educational and illustrative purposes only. Trading involves risk, and past performance is not indicative of future results. Always backtest and paper trade any strategy before using it with real capital._**
 
+## Examples
+### Meta Platforms (Facebook)
+![](./META.png)
+
+
+### Bank BCA 
+![](./BBCA.png)
+
 ---
 
 ## Related Projects
